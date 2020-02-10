@@ -101,6 +101,7 @@
       Vue.mixin({
           beforeCreate: function beforeCreate() {
               var options = this.$options;
+              console.log("options in before create: ", options);
               if (options.vueThemed) {
                   options.vueThemed.init(this, options.ssrContext);
                   this.$theme = Vue.observable(options.vueThemed.themeProvider);
@@ -2106,9 +2107,10 @@
   // } from 'vuetify/types/services'
   // // Services
   // import * as services from './services'
-  var VueThemed = function VueThemed(userPreset) {
+  var VueThemed = function VueThemed(userTheme) {
+      if ( userTheme === void 0 ) userTheme = {};
 
-      this.themeProvider = new ThemeProvider();
+      this.themeProvider = new ThemeProvider(userTheme);
       // this.userPreset = userPreset;
       // this.use(services.Presets)
       // this.use(services.Application)

@@ -26,6 +26,8 @@ export function install(Vue: VueConstructor, options: {}) {
     beforeCreate() {
       const options = this.$options as any;
 
+      console.log("options in before create: ", options);
+
       if (options.vueThemed) {
         options.vueThemed.init(this, options.ssrContext);
         this.$theme = Vue.observable(options.vueThemed.themeProvider);

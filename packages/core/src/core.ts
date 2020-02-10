@@ -32,8 +32,8 @@ export default class VueThemed {
 
   // public userPreset: UserVuetifyPreset = {}
 
-  constructor(userPreset: {} = {}) {
-    this.themeProvider = new ThemeProvider();
+  constructor(userTheme: {} = {}) {
+    this.themeProvider = new ThemeProvider(userTheme);
     // this.userPreset = userPreset;
     // this.use(services.Presets)
     // this.use(services.Application)

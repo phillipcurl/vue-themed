@@ -81,7 +81,7 @@ export interface VueThemed {
   install: PluginFunction<{}>;
   // preset: VuetifyPreset;
   // userPreset: UserVuetifyPreset
-  version: string;
+  // version: string;
   // new (preset?: Partial<UserVuetifyPreset>): Vuetify
 }
 
