@@ -15,7 +15,7 @@ import Vue from "vue";
 // // Services
 // import * as services from './services'
 
-export default class VueUI {
+export default class VueThemed {
   static install = install;
 
   static installed = false;

@@ -1,17 +1,22 @@
 /* eslint-disable max-len */
-
 import {
+  Component,
+  PluginFunction,
   VueConstructor,
+  DirectiveOptions,
   ComponentOptions,
   FunctionalComponentOptions,
   VNodeData
 } from "vue";
+
 import { CombinedVueInstance, Vue } from "vue/types/vue";
 import {
   RecordPropsDefinition,
   ThisTypedComponentOptionsWithArrayProps,
   ThisTypedComponentOptionsWithRecordProps
 } from "vue/types/options";
+
+import ThemeProvider from "./themeProvider";
 
 declare global {
   interface Window {
@@ -69,6 +74,36 @@ declare module "vue/types/vnode" {
   }
 }
 
+declare const VueThemed: VueThemed;
+export default VueThemed;
+export interface VueThemed {
+  themeProvider: ThemeProvider;
+  install: PluginFunction<{}>;
+  // preset: VuetifyPreset;
+  // userPreset: UserVuetifyPreset
+  version: string;
+  // new (preset?: Partial<UserVuetifyPreset>): Vuetify
+}
+
+declare module "vue/types/vue" {
+  export interface Vue {
+    $theme: ThemeProvider;
+  }
+}
+
+declare module "vue/types/options" {
+  export interface ComponentOptions<
+    V extends Vue,
+    Data = DefaultData<V>,
+    Methods = DefaultMethods<V>,
+    Computed = DefaultComputed,
+    PropsDef = PropsDefinition<DefaultProps>,
+    Props = DefaultProps
+  > {
+    vueThemed?: VueThemed;
+  }
+}
+
 declare module "vue/types/vue" {
   export type OptionsVue<
     Instance extends Vue,
@@ -118,9 +153,9 @@ declare module "vue/types/vue" {
   interface VueConstructor<V extends Vue = Vue, Options = Record<string, any>> {
     version: string;
     /* eslint-disable-next-line camelcase */
-    $_vueui_subcomponents?: Record<string, VueConstructor>;
+    $_vuethemed_subcomponents?: Record<string, VueConstructor>;
     /* eslint-disable-next-line camelcase */
-    $_vueui_installed?: true;
+    $_vuethemed_installed?: true;
     options: Options;
 
     extend<Data, Methods, Computed, Options, PropNames extends string = never>(

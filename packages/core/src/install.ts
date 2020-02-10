@@ -19,18 +19,18 @@ export function install(Vue: VueConstructor, options: {}) {
   // Used to avoid multiple mixins being setup
   // when in dev mode and hot module reload
   // https://github.com/vuejs/vue/issues/5089#issuecomment-284260111
-  if (Vue.$_vueui_installed) return;
-  Vue.$_vueui_installed = true;
+  if (Vue.$_vuethemed_installed) return;
+  Vue.$_vuethemed_installed = true;
 
   Vue.mixin({
     beforeCreate() {
       const options = this.$options as any;
 
-      if (options.vuetify) {
-        options.vuetify.init(this, options.ssrContext);
-        // this.$vuetify = Vue.observable(options.vuetify.framework)
+      if (options.vueThemed) {
+        options.vueThemed.init(this, options.ssrContext);
+        this.$theme = Vue.observable(options.vueThemed.themeProvider);
       } else {
-        // this.$vuetify = (options.parent && options.parent.$vuetify) || this
+        this.$theme = (options.parent && options.parent.$theme) || this;
       }
     }
   });
