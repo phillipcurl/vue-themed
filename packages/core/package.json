@@ -1,5 +1,5 @@
 {
-  "name": "@vue-ui/core",
+  "name": "@vuei/core",
   "version": "0.0.8",
   "description": "> TODO: description",
   "author": "Phillip Curl <phillipcurl@gmail.com>",
@@ -35,5 +35,5 @@
     "@styled-system/core": "^5.1.2",
     "@styled-system/css": "^5.1.4"
   },
-  "gitHead": "4c89775c3a88ec0428c8aa99888b0dc541267645"
+  "gitHead": "ac48b86bd6b156a5f8d6ecc3df64793bc19888c2"
 }
