@@ -1,5 +1,5 @@
 {
-  "name": "@vuei/components",
+  "name": "@vue-ui/components",
   "version": "0.0.9",
   "description": "> TODO: description",
   "author": "Phillip Curl <phillipcurl@gmail.com>",
@@ -14,13 +14,6 @@
     "build": "microbundle --tsconfig tsconfig.json",
     "dev": "microbundle watch"
   },
-  "directories": {
-    "src": "src",
-    "test": "__tests__"
-  },
-  "files": [
-    "src"
-  ],
   "publishConfig": {
     "access": "public"
   },
@@ -30,5 +23,5 @@
   "peerDependencies": {
     "vue": "^2.6.11"
   },
-  "gitHead": "ac48b86bd6b156a5f8d6ecc3df64793bc19888c2"
+  "gitHead": "28d229b2fa56b7822c7333288e234a3abbae74bb"
 }
