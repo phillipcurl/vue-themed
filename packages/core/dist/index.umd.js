@@ -2,9 +2,9 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue')) :
   typeof define === 'function' && define.amd ? define(['exports', 'vue'], factory) :
   (global = global || self, factory(global.VueThemedCore = {}, global.OurVue));
-}(this, (function (exports, Vue) { 'use strict';
+}(this, (function (exports, OurVue) { 'use strict';
 
-  Vue = Vue && Vue.hasOwnProperty('default') ? Vue['default'] : Vue;
+  OurVue = OurVue && OurVue.hasOwnProperty('default') ? OurVue['default'] : OurVue;
 
   function createMessage(message, vm, parent) {
       if (parent) {
@@ -84,20 +84,21 @@
 
   // Import vue components
   // install function executed by Vue.use()
-  function install(Vue$1, options) {
+  function install(Vue, options) {
       console.log("options: ", options);
       if (install.installed)
           { return; }
       install.installed = true;
-      if (Vue !== Vue$1) {
+      if (OurVue !== Vue) {
           consoleError("Multiple instances of Vue detected\nSee https://github.com/vuetifyjs/vuetify/issues/4068\n\nIf you're seeing \"$attrs is readonly\", it's caused by this");
       }
       // Used to avoid multiple mixins being setup
       // when in dev mode and hot module reload
       // https://github.com/vuejs/vue/issues/5089#issuecomment-284260111
-      if (Vue$1.$_vuethemed_installed)
+      if (Vue.$_vuethemed_installed)
           { return; }
-      Vue$1.$_vuethemed_installed = true;
+      Vue.$_vuethemed_installed = true;
+      Vue.prototype.$theme = Vue.observable(install.themeProvider);
       // Vue.mixin({
       //   beforeCreate() {
       //     const options = this.$options as any;
@@ -111,7 +112,6 @@
       //   }
       // });
       // const $theme = new ThemeProvider(options);
-      // Vue.prototype.$theme = Vue.observable($theme);
       // Object.keys(components).forEach(componentName => {
       //   Vue.component(componentName, components[componentName]);
       // });
@@ -2110,7 +2110,7 @@
       if ( userTheme === void 0 ) userTheme = {};
 
       this.themeProvider = new ThemeProvider(userTheme);
-      Vue.prototype.$theme = Vue.observable(this.themeProvider);
+      // Vue.prototype.$theme = Vue.observable(this.themeProvider);
       // this.userPreset = userPreset;
       // this.use(services.Presets)
       // this.use(services.Application)

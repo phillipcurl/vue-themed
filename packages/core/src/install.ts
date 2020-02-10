@@ -22,6 +22,8 @@ export function install(Vue: VueConstructor, options: {}) {
   if (Vue.$_vuethemed_installed) return;
   Vue.$_vuethemed_installed = true;
 
+  Vue.prototype.$theme = Vue.observable((install as any).themeProvider);
+
   // Vue.mixin({
   //   beforeCreate() {
   //     const options = this.$options as any;
@@ -38,8 +40,6 @@ export function install(Vue: VueConstructor, options: {}) {
   // });
 
   // const $theme = new ThemeProvider(options);
-
-  // Vue.prototype.$theme = Vue.observable($theme);
 
   // Object.keys(components).forEach(componentName => {
   //   Vue.component(componentName, components[componentName]);
