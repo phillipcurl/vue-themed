@@ -24,14 +24,14 @@ export default Vue.extend({
     return h(
       this.as,
       {
-        // class: this.$theme.css(
-        //   Object.assign({}, this.css, {
-        //     maxWidth: this.maxWidth,
-        //     margin: "0px",
-        //     lineHeight: this.lineHeight,
-        //     color: "text"
-        //   })
-        // ),
+        class: this.$theme.css(
+          Object.assign({}, this.css, {
+            maxWidth: this.maxWidth,
+            margin: "0px",
+            lineHeight: this.lineHeight,
+            color: "text"
+          })
+        ),
         attrs: this.$attrs
       },
       this.$slots.default
