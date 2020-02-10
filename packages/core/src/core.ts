@@ -20,6 +20,8 @@ export default class VueUI {
 
   static installed = false;
 
+  public themeProvider: ThemeProvider;
+
   // static version = __VUETIFY_VERSION__
 
   // public framework: Dictionary<VuetifyServiceContract> = {}
@@ -31,6 +33,7 @@ export default class VueUI {
   // public userPreset: UserVuetifyPreset = {}
 
   constructor(userPreset: {} = {}) {
+    this.themeProvider = new ThemeProvider();
     // this.userPreset = userPreset;
     // this.use(services.Presets)
     // this.use(services.Application)
