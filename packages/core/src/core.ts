@@ -34,6 +34,7 @@ export default class VueThemed {
 
   constructor(userTheme: {} = {}) {
     this.themeProvider = new ThemeProvider(userTheme);
+    Vue.prototype.$theme = Vue.observable(this.themeProvider);
     // this.userPreset = userPreset;
     // this.use(services.Presets)
     // this.use(services.Application)

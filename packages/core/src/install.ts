@@ -22,20 +22,20 @@ export function install(Vue: VueConstructor, options: {}) {
   if (Vue.$_vuethemed_installed) return;
   Vue.$_vuethemed_installed = true;
 
-  Vue.mixin({
-    beforeCreate() {
-      const options = this.$options as any;
+  // Vue.mixin({
+  //   beforeCreate() {
+  //     const options = this.$options as any;
 
-      console.log("options in before create: ", options);
+  //     console.log("options in before create: ", options);
 
-      if (options.vueThemed) {
-        options.vueThemed.init(this, options.ssrContext);
-        this.$theme = Vue.observable(options.vueThemed.themeProvider);
-      } else {
-        this.$theme = (options.parent && options.parent.$theme) || this;
-      }
-    }
-  });
+  //     if (options.vueThemed) {
+  //       options.vueThemed.init(this, options.ssrContext);
+  //       this.$theme = Vue.observable(options.vueThemed.themeProvider);
+  //     } else {
+  //       this.$theme = (options.parent && options.parent.$theme) || this;
+  //     }
+  //   }
+  // });
 
   // const $theme = new ThemeProvider(options);
 
