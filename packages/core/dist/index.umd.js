@@ -95,15 +95,18 @@
       // Used to avoid multiple mixins being setup
       // when in dev mode and hot module reload
       // https://github.com/vuejs/vue/issues/5089#issuecomment-284260111
-      if (Vue.$_vueui_installed)
+      if (Vue.$_vuethemed_installed)
           { return; }
-      Vue.$_vueui_installed = true;
+      Vue.$_vuethemed_installed = true;
       Vue.mixin({
           beforeCreate: function beforeCreate() {
               var options = this.$options;
-              if (options.vuetify) {
-                  options.vuetify.init(this, options.ssrContext);
-                  // this.$vuetify = Vue.observable(options.vuetify.framework)
+              if (options.vueThemed) {
+                  options.vueThemed.init(this, options.ssrContext);
+                  this.$theme = Vue.observable(options.vueThemed.themeProvider);
+              }
+              else {
+                  this.$theme = (options.parent && options.parent.$theme) || this;
               }
           }
       });
@@ -2103,7 +2106,7 @@
   // } from 'vuetify/types/services'
   // // Services
   // import * as services from './services'
-  var VueUI = function VueUI(userPreset) {
+  var VueThemed = function VueThemed(userPreset) {
 
       this.themeProvider = new ThemeProvider();
       // this.userPreset = userPreset;
@@ -2118,7 +2121,7 @@
   // Called on the new vuetify instance
   // bootstrap in install beforeCreate
   // Exposes ssrContext if available
-  VueUI.prototype.init = function init (root, ssrContext) {
+  VueThemed.prototype.init = function init (root, ssrContext) {
       // this.installed.forEach(property => {
       //   const service = this.framework[property]
       //   service.framework = this.framework
@@ -2130,25 +2133,25 @@
       // this.framework.rtl = Boolean(this.preset.rtl) as any
   };
   // Instantiate a VuetifyService
-  VueUI.prototype.use = function use (Service) {
+  VueThemed.prototype.use = function use (Service) {
       // const property = Service.property
       // if (this.installed.includes(property)) return
       // // TODO maybe a specific type for arg 2?
       // this.framework[property] = new Service(this.preset, this as any)
       // this.installed.push(property)
   };
-  VueUI.install = install;
-  VueUI.installed = false;
+  VueThemed.install = install;
+  VueThemed.installed = false;
 
-  var install$1 = VueUI.install;
-  VueUI.install = function (Vue, args) {
-      install$1.call(VueUI, Vue, args);
+  var install$1 = VueThemed.install;
+  VueThemed.install = function (Vue, args) {
+      install$1.call(VueThemed, Vue, args);
   };
   if (typeof window !== "undefined" && window.Vue) {
-      window.Vue.use(VueUI);
+      window.Vue.use(VueThemed);
   }
 
-  exports.default = VueUI;
+  exports.default = VueThemed;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
