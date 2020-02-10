@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@vue-ui/docs",
-  "version": "0.0.11",
+  "version": "0.0.10",
   "description": "> TODO: description",
   "author": "Phillip Curl <phillipcurl@gmail.com>",
   "homepage": "",
@@ -13,6 +13,9 @@
   "files": [
     "lib"
   ],
+  "publishConfig": {
+    "access": "private"
+  },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   }
