@@ -4,6 +4,7 @@
   "description": "> TODO: description",
   "author": "Phillip Curl <phillipcurl@gmail.com>",
   "homepage": "",
+  "repository": "phillipcurl/vue-ui",
   "license": "MIT",
   "source": "src/index.ts",
   "main": "dist/index.js",
