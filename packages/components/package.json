@@ -1,0 +1,32 @@
+{
+  "name": "@vue-ui/components",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Phillip Curl <phillipcurl@gmail.com>",
+  "homepage": "",
+  "license": "MIT",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "unpkg": "dist/index.umd.js",
+  "scripts": {
+    "build": "microbundle --tsconfig tsconfig.json",
+    "dev": "microbundle watch"
+  },
+  "directories": {
+    "src": "src",
+    "test": "__tests__"
+  },
+  "files": [
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "vue": "^2.6.11"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.11"
+  }
+}
