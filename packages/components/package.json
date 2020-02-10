@@ -1,5 +1,5 @@
 {
-  "name": "@vue-ui/components",
+  "name": "@vue-themed/components",
   "version": "0.0.12",
   "description": "> TODO: description",
   "author": "Phillip Curl <phillipcurl@gmail.com>",
@@ -23,5 +23,5 @@
   "peerDependencies": {
     "vue": "^2.6.11"
   },
-  "gitHead": "e05d1a021a860600509c38a3ae6ea2bf95c3dce8"
+  "gitHead": "5ccb038babf347900f71c53b4ee0cfa01de75542"
 }

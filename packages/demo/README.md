@@ -1,11 +1,11 @@
-# `@vue-ui/demo`
+# `@vue-themed/demo`
 
 > TODO: description
 
 ## Usage
 
 ```
-const demo = require('@vue-ui/demo');
+const demo = require('@vue-themed/demo');
 
 // TODO: DEMONSTRATE API
 ```

@@ -2,6 +2,6 @@
 
 const components = require('..');
 
-describe('@vue-ui/components', () => {
+describe('@vue-themed/components', () => {
     it('needs tests');
 });

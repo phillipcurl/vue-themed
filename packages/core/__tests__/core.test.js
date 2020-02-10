@@ -2,6 +2,6 @@
 
 const core = require('..');
 
-describe('@vue-ui/core', () => {
+describe('@vue-themed/core', () => {
     it('needs tests');
 });

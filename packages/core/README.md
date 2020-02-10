@@ -1,11 +1,11 @@
-# `@vue-ui/core`
+# `@vue-themed/core`
 
 > TODO: description
 
 ## Usage
 
 ```
-const core = require('@vue-ui/core');
+const core = require('@vue-themed/core');
 
 // TODO: DEMONSTRATE API
 ```

@@ -2,6 +2,6 @@
 
 const docs = require('..');
 
-describe('@vue-ui/docs', () => {
+describe('@vue-themed/docs', () => {
     it('needs tests');
 });
