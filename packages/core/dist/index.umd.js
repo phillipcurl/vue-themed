@@ -1,141 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'vue'], factory) :
-  (global = global || self, factory(global.VueThemedCore = {}, global.OurVue));
-}(this, (function (exports, OurVue) { 'use strict';
-
-  OurVue = OurVue && OurVue.hasOwnProperty('default') ? OurVue['default'] : OurVue;
-
-  function createMessage(message, vm, parent) {
-      if (parent) {
-          vm = {
-              _isVue: true,
-              $parent: parent,
-              $options: vm
-          };
-      }
-      if (vm) {
-          // Only show each message once per instance
-          vm.$_alreadyWarned = vm.$_alreadyWarned || [];
-          if (vm.$_alreadyWarned.includes(message))
-              { return; }
-          vm.$_alreadyWarned.push(message);
-      }
-      return "[Vuetify] " + message + (vm ? generateComponentTrace(vm) : "");
-  }
-  function consoleError(message, vm, parent) {
-      var newMessage = createMessage(message, vm, parent);
-      newMessage != null && console.error(newMessage);
-  }
-  /**
-   * Shamelessly stolen from vuejs/vue/blob/dev/src/core/util/debug.js
-   */
-  var classifyRE = /(?:^|[-_])(\w)/g;
-  var classify = function (str) { return str.replace(classifyRE, function (c) { return c.toUpperCase(); }).replace(/[-_]/g, ""); };
-  function formatComponentName(vm, includeFile) {
-      if (vm.$root === vm) {
-          return "<Root>";
-      }
-      var options = typeof vm === "function" && vm.cid != null
-          ? vm.options
-          : vm._isVue
-              ? vm.$options || vm.constructor.options
-              : vm || {};
-      var name = options.name || options._componentTag;
-      var file = options.__file;
-      if (!name && file) {
-          var match = file.match(/([^/\\]+)\.vue$/);
-          name = match && match[1];
-      }
-      return ((name ? ("<" + (classify(name)) + ">") : "<Anonymous>") +
-          (file && includeFile !== false ? (" at " + file) : ""));
-  }
-  function generateComponentTrace(vm) {
-      if (vm._isVue && vm.$parent) {
-          var tree = [];
-          var currentRecursiveSequence = 0;
-          while (vm) {
-              if (tree.length > 0) {
-                  var last = tree[tree.length - 1];
-                  if (last.constructor === vm.constructor) {
-                      currentRecursiveSequence++;
-                      vm = vm.$parent;
-                      continue;
-                  }
-                  else if (currentRecursiveSequence > 0) {
-                      tree[tree.length - 1] = [last, currentRecursiveSequence];
-                      currentRecursiveSequence = 0;
-                  }
-              }
-              tree.push(vm);
-              vm = vm.$parent;
-          }
-          return ("\n\nfound in\n\n" +
-              tree
-                  .map(function (vm, i) { return ("" + (i === 0 ? "---> " : " ".repeat(5 + i * 2)) + (Array.isArray(vm)
-                  ? ((formatComponentName(vm[0])) + "... (" + (vm[1]) + " recursive calls)")
-                  : formatComponentName(vm))); })
-                  .join("\n"));
-      }
-      else {
-          return ("\n\n(found in " + (formatComponentName(vm)) + ")");
-      }
-  }
-
-  // Import vue components
-  // install function executed by Vue.use()
-  function install(Vue, options) {
-      console.log("options: ", options);
-      if (install.installed)
-          { return; }
-      install.installed = true;
-      if (OurVue !== Vue) {
-          consoleError("Multiple instances of Vue detected\nSee https://github.com/vuetifyjs/vuetify/issues/4068\n\nIf you're seeing \"$attrs is readonly\", it's caused by this");
-      }
-      // Used to avoid multiple mixins being setup
-      // when in dev mode and hot module reload
-      // https://github.com/vuejs/vue/issues/5089#issuecomment-284260111
-      if (Vue.$_vuethemed_installed)
-          { return; }
-      Vue.$_vuethemed_installed = true;
-      Vue.prototype.$theme = Vue.observable(install.themeProvider);
-      // Vue.mixin({
-      //   beforeCreate() {
-      //     const options = this.$options as any;
-      //     console.log("options in before create: ", options);
-      //     if (options.vueThemed) {
-      //       options.vueThemed.init(this, options.ssrContext);
-      //       this.$theme = Vue.observable(options.vueThemed.themeProvider);
-      //     } else {
-      //       this.$theme = (options.parent && options.parent.$theme) || this;
-      //     }
-      //   }
-      // });
-      // const $theme = new ThemeProvider(options);
-      // Object.keys(components).forEach(componentName => {
-      //   Vue.component(componentName, components[componentName]);
-      // });
-  }
-  // Create module definition for Vue.use()
-  // const plugin: Vue.PluginObject = {
-  //   install
-  // };
-  // // To auto-install when vue is found
-  // /* global window global */
-  // let GlobalVue = null;
-  // if (typeof window !== "undefined") {
-  //   GlobalVue = window.Vue;
-  // } else if (typeof global !== "undefined") {
-  //   GlobalVue = global.Vue;
-  // }
-  // if (GlobalVue) {
-  //   GlobalVue.use(plugin);
-  // }
-  // Default export is library as a whole, registered via Vue.use()
-  // export default plugin;
-  // To allow individual component use, export components
-  // each can be registered via Vue.component()
-  // export * from "./components/index";
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (global = global || self, factory(global.VueThemedCore = {}));
+}(this, (function (exports) { 'use strict';
 
   var _scales;
 
@@ -2096,58 +1963,21 @@
       this.options = Object.assign({}, base, themeConfig);
   };
 
-  // import {
-  //   UserVuetifyPreset,
-  //   VuetifyPreset,
-  // } from 'vuetify/types/services/presets'
-  // import {
-  //   VuetifyService,
-  //   VuetifyServiceContract,
-  // } from 'vuetify/types/services'
-  // // Services
-  // import * as services from './services'
-  var VueThemed = function VueThemed(userTheme) {
-      if ( userTheme === void 0 ) userTheme = {};
-
-      this.themeProvider = new ThemeProvider(userTheme);
-      // Vue.prototype.$theme = Vue.observable(this.themeProvider);
-      // this.userPreset = userPreset;
-      // this.use(services.Presets)
-      // this.use(services.Application)
-      // this.use(services.Breakpoint)
-      // this.use(services.Goto)
-      // this.use(services.Icons)
-      // this.use(services.Lang)
-      // this.use(services.Theme)
-  };
-  // Called on the new vuetify instance
-  // bootstrap in install beforeCreate
-  // Exposes ssrContext if available
-  VueThemed.prototype.init = function init (root, ssrContext) {
-      // this.installed.forEach(property => {
-      //   const service = this.framework[property]
-      //   service.framework = this.framework
-      //   service.init(root, ssrContext)
-      // })
-      // rtl is not installed and
-      // will never be called by
-      // the init process
-      // this.framework.rtl = Boolean(this.preset.rtl) as any
-  };
-  // Instantiate a VuetifyService
-  VueThemed.prototype.use = function use (Service) {
-      // const property = Service.property
-      // if (this.installed.includes(property)) return
-      // // TODO maybe a specific type for arg 2?
-      // this.framework[property] = new Service(this.preset, this as any)
-      // this.installed.push(property)
-  };
-  VueThemed.install = install;
-  VueThemed.installed = false;
-
-  var install$1 = VueThemed.install;
-  VueThemed.install = function (Vue, args) {
-      install$1.call(VueThemed, Vue, args);
+  // import VueThemed from "./core";
+  // export default VueThemed;
+  // const install = VueThemed.install;
+  // VueThemed.install = (Vue, args) => {
+  //   install.call(VueThemed, Vue, args);
+  // };
+  function install(Vue, args) {
+      if (install.installed)
+          { return; }
+      install.installed = true;
+      var $theme = new ThemeProvider(args);
+      Vue.prototype.$theme = Vue.observable($theme);
+  }
+  var VueThemed = {
+      install: install
   };
   if (typeof window !== "undefined" && window.Vue) {
       window.Vue.use(VueThemed);

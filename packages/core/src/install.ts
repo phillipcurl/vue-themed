@@ -5,10 +5,10 @@ import { consoleError } from "./util/console";
 import ThemeProvider from "./themeProvider";
 
 // install function executed by Vue.use()
-export function install(Vue: VueConstructor, options: {}) {
+export function installOld(Vue: VueConstructor, options: {}) {
   console.log("options: ", options);
-  if ((install as any).installed) return;
-  (install as any).installed = true;
+  if ((installOld as any).installed) return;
+  (installOld as any).installed = true;
 
   if (OurVue !== Vue) {
     consoleError(
@@ -22,7 +22,7 @@ export function install(Vue: VueConstructor, options: {}) {
   if (Vue.$_vuethemed_installed) return;
   Vue.$_vuethemed_installed = true;
 
-  Vue.prototype.$theme = Vue.observable((install as any).themeProvider);
+  Vue.prototype.$theme = Vue.observable((installOld as any).themeProvider);
 
   // Vue.mixin({
   //   beforeCreate() {
