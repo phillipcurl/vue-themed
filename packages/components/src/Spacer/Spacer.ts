@@ -1,4 +1,6 @@
-export default {
+import Vue, { VNode } from "vue";
+
+export default Vue.extend({
   name: "Spacer",
   props: {
     as: {
@@ -10,20 +12,17 @@ export default {
       default: () => ({})
     }
   },
-  render: function(h) {
+  render: function(h): VNode {
     return h(
       this.as,
       {
-        class: this.$theme.css(
-          Object.assign({}, this.css, {
-            flexGrow: "9999 !important"
-          })
-        ),
-        attrs: Object.assign({}, this.$attrs, {
+        class: this.$theme.css({
+          ...this.css,
           flexGrow: "9999 !important"
-        })
+        }),
+        attrs: { ...this.$attrs }
       },
       this.$slots.default
     );
   }
-};
+});

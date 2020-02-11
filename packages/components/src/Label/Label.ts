@@ -16,7 +16,7 @@ export default Vue.extend({
           width: "100%",
           display: "flex",
           // variant: "buttons.outline"
-          ...this.$theme.get("forms.label", {}),
+          ...this.$theme.get("forms.label", ""),
           ...this.css
         }),
         attrs: this.$attrs

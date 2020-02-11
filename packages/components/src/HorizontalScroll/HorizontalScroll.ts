@@ -43,40 +43,40 @@ export default Vue.extend({
       });
     }
   },
-  methods: {
-    toggleOverflowClass(elem: HTMLElement) {
-      elem.classList.toggle(
-        "overflowing",
-        this.$refs.horizontalScroll.scrollWidth >
-          this.$refs.horizontalScroll.clientWidth
-      );
-    }
-  },
-  mounted() {
-    if ("ResizeObserver" in window && this.$refs.horizontalScroll) {
-      this.resizeObserver = new ResizeObserver(entries => {
-        this.toggleOverflowClass(entries[0].target);
-      });
-      this.resizeObserver.observe(this.$refs.horizontalScroll);
-    }
+  // methods: {
+  //   toggleOverflowClass(elem: HTMLElement) {
+  //     elem.classList.toggle(
+  //       "overflowing",
+  //       this.$refs.horizontalScroll.scrollWidth >
+  //         this.$refs.horizontalScroll.clientWidth
+  //     );
+  //   }
+  // },
+  // mounted() {
+  //   if ("ResizeObserver" in window && this.$refs.horizontalScroll) {
+  //     this.resizeObserver = new ResizeObserver(entries => {
+  //       this.toggleOverflowClass(entries[0].target);
+  //     });
+  //     this.resizeObserver.observe(this.$refs.horizontalScroll);
+  //   }
 
-    if ("MutationObserver" in window && this.$refs.horizontalScroll) {
-      this.mutationObserver = new MutationObserver(entries => {
-        this.toggleOverflowClass(entries[0].target);
-      });
-      this.mutationObserver.observe(this.$refs.horizontalScroll, {
-        childList: true
-      });
-    }
-  },
-  beforeDestroy() {
-    if (this.mutationObserver) {
-      this.mutationObserver.disconnect();
-    }
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
-    }
-  },
+  //   if ("MutationObserver" in window && this.$refs.horizontalScroll) {
+  //     this.mutationObserver = new MutationObserver(entries => {
+  //       this.toggleOverflowClass(entries[0].target);
+  //     });
+  //     this.mutationObserver.observe(this.$refs.horizontalScroll, {
+  //       childList: true
+  //     });
+  //   }
+  // },
+  // beforeDestroy() {
+  //   if (this.mutationObserver) {
+  //     this.mutationObserver.disconnect();
+  //   }
+  //   if (this.resizeObserver) {
+  //     this.resizeObserver.disconnect();
+  //   }
+  // },
   render: function(h): VNode {
     return h(
       this.as,
