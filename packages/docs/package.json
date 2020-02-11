@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@vue-themed/docs",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "> TODO: description",
   "author": "Phillip Curl",
   "homepage": "",
@@ -20,7 +20,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@vue-themed/components": "^0.0.23",
-    "@vue-themed/core": "^0.0.23"
+    "@vue-themed/components": "^0.0.24",
+    "@vue-themed/core": "^0.0.24"
   }
 }
