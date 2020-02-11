@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue, { VNode } from "vue";
 
 export default Vue.extend({
   name: "BaseText",
@@ -20,18 +20,17 @@ export default Vue.extend({
       default: () => ({})
     }
   },
-  render: function(h) {
+  render: function(h): VNode {
     return h(
       this.as,
       {
-        class: this.$theme.css(
-          Object.assign({}, this.css, {
-            maxWidth: this.maxWidth,
-            margin: "0px",
-            lineHeight: this.lineHeight,
-            color: "text"
-          })
-        ),
+        class: this.$theme.css({
+          ...this.css,
+          maxWidth: this.maxWidth,
+          margin: "0px",
+          lineHeight: this.lineHeight,
+          color: "text"
+        }),
         attrs: this.$attrs
       },
       this.$slots.default

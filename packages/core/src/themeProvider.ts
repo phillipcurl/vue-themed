@@ -16,7 +16,7 @@ export default class ThemeProvider {
     return css(system.css(styles)(this.options));
   }
 
-  get(key: string, fallback: string) {
+  get(key: string, fallback?: string) {
     return system.get(this.options, key, fallback ? fallback : key);
   }
 

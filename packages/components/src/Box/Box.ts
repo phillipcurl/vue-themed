@@ -1,4 +1,6 @@
-export default {
+import Vue, { VNode } from "vue";
+
+export default Vue.extend({
   name: "Box",
   props: {
     as: {
@@ -21,29 +23,24 @@ export default {
     };
   },
   computed: {
-    variantStyles() {
+    variantStyles(): {} {
       return this.$theme.get(
         `${this.__themeKey}${this.variant ? `.${this.variant}` : ""}`,
-        this.$theme.get(this.variant ? this.variant : {})
+        this.$theme.get(this.variant ? this.variant : "")
       );
     }
   },
-  render: function(h) {
+  render: function(h): VNode {
     return h(
       this.as,
       {
-        class: this.$theme.css(
-          Object.assign(
-            {},
-            {
-              boxSizing: "border-box"
-            },
-            this.css
-          )
-        ),
+        class: this.$theme.css({
+          boxSizing: "border-box",
+          ...this.css
+        }),
         attrs: this.$attrs
       },
       this.$slots.default
     );
   }
-};
+});

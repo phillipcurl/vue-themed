@@ -1,4 +1,6 @@
-export default {
+import Vue, { VNode } from "vue";
+
+export default Vue.extend({
   name: "Cover",
   props: {
     minHeight: {
@@ -18,29 +20,28 @@ export default {
       default: () => ({})
     }
   },
-  render: function(h) {
+  render: function(h): VNode {
     return h(
       this.as,
       {
-        class: this.$theme.css(
-          Object.assign({}, this.css, {
-            display: "flex",
-            flexDirection: "column",
-            minHeight: this.minHeight,
-            "> *": {
-              my: this.gap
-            },
-            "> :first-child:not(.cover--content)": {
-              mt: "0px"
-            },
-            "> :last-child:not(.cover--content)": {
-              mb: "0px"
-            },
-            "> .cover--content": {
-              my: "auto"
-            }
-          })
-        ),
+        class: this.$theme.css({
+          ...this.css,
+          display: "flex",
+          flexDirection: "column",
+          minHeight: this.minHeight,
+          "> *": {
+            my: this.gap
+          },
+          "> :first-child:not(.cover--content)": {
+            mt: "0px"
+          },
+          "> :last-child:not(.cover--content)": {
+            mb: "0px"
+          },
+          "> .cover--content": {
+            my: "auto"
+          }
+        }),
         attrs: this.$attrs
       },
       [
@@ -56,4 +57,4 @@ export default {
       ]
     );
   }
-};
+});

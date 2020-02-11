@@ -1,4 +1,6 @@
-export default {
+import Vue, { VNode } from "vue";
+
+export default Vue.extend({
   name: "Container",
   props: {
     maxWidth: {
@@ -14,7 +16,7 @@ export default {
       default: () => ({})
     }
   },
-  render: function(h) {
+  render: function(h): VNode {
     return h(
       this.as,
       {
@@ -31,4 +33,4 @@ export default {
       this.$slots.default
     );
   }
-};
+});

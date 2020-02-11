@@ -1,4 +1,6 @@
-export default {
+import Vue, { VNode } from "vue";
+
+export default Vue.extend({
   name: "HStack",
   props: {
     size: {
@@ -19,7 +21,7 @@ export default {
     }
   },
   computed: {
-    firstMargin() {
+    firstMargin(): string[] {
       return Array.from(this.gap).map(val => {
         let themeVal = this.$theme.get(`space.${val}`);
         if (typeof themeVal === "number") {
@@ -29,7 +31,7 @@ export default {
         }
       });
     },
-    secondMargin() {
+    secondMargin(): string[] {
       return Array.from(this.gap).map(val => {
         let themeVal = this.$theme.get(`space.${val}`);
         if (typeof themeVal === "number") {
@@ -40,45 +42,34 @@ export default {
       });
     }
   },
-  render: function(h) {
+  render: function(h): VNode {
     return h(
       this.as,
       {
-        class: this.$theme.css(
-          Object.assign(
-            {},
-            this.css,
-            // {
-            //   "> *": {
-            //     display: "flex",
-            //     gridGap: this.gap
-            //   }
-            // }
-            {
-              "> *": {
-                display: "flex",
-                // flexWrap: "wrap",
-                alignItems: "center",
-                m: this.firstMargin
-              },
-              "> * > *": {
-                // flex-basis: calc((-30px - (100% - var(--h-stack-gap))) * 999),
-                flexGrow: 1,
-                flexBasis: "auto",
-                m: this.secondMargin
-              },
-              "> *:first-child": {
-                ml: "0px"
-              },
-              "> *:last-child": {
-                mr: "0px"
-              }
-            }
-          )
-        ),
+        class: this.$theme.css({
+          ...this.css,
+          "> *": {
+            display: "flex",
+            // flexWrap: "wrap",
+            alignItems: "center",
+            m: this.firstMargin
+          },
+          "> * > *": {
+            // flex-basis: calc((-30px - (100% - var(--h-stack-gap))) * 999),
+            flexGrow: 1,
+            flexBasis: "auto",
+            m: this.secondMargin
+          },
+          "> *:first-child": {
+            ml: "0px"
+          },
+          "> *:last-child": {
+            mr: "0px"
+          }
+        }),
         attrs: this.$attrs
       },
       [h("div", this.$slots.default)]
     );
   }
-};
+});

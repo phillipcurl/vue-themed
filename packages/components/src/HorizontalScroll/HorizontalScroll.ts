@@ -1,4 +1,6 @@
-export default {
+import Vue, { VNode } from "vue";
+
+export default Vue.extend({
   props: {
     itemWidth: {
       type: String,
@@ -30,7 +32,7 @@ export default {
     mutationObserver: null
   }),
   computed: {
-    overflowPadding() {
+    overflowPadding(): string[] {
       return Array.from(this.gap).map(val => {
         const themeVal = this.$theme.get(`space.${val}`);
         if (typeof themeVal === "number") {
@@ -42,7 +44,7 @@ export default {
     }
   },
   methods: {
-    toggleOverflowClass(elem) {
+    toggleOverflowClass(elem: HTMLElement) {
       elem.classList.toggle(
         "overflowing",
         this.$refs.horizontalScroll.scrollWidth >
@@ -68,10 +70,14 @@ export default {
     }
   },
   beforeDestroy() {
-    this.mutationObserver.disconnect();
-    this.resizeObserver.disconnect();
+    if (this.mutationObserver) {
+      this.mutationObserver.disconnect();
+    }
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
   },
-  render: function(h) {
+  render: function(h): VNode {
     return h(
       this.as,
       {
@@ -121,4 +127,4 @@ export default {
       ]
     );
   }
-};
+});

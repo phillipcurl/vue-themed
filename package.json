@@ -2,8 +2,6 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
@@ -42,7 +40,6 @@
     "lerna": "^3.20.2",
     "rollup": "^1.17.0",
     "rollup-plugin-vue": "^5.0.1",
-    "tslib": "^1.10.0",
     "typescript": "~3.7.5",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5",

@@ -18,5 +18,9 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@vue-themed/components": "^0.0.22",
+    "@vue-themed/core": "^0.0.22"
   }
 }

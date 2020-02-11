@@ -1,4 +1,6 @@
-export default {
+import Vue, { VNode } from "vue";
+
+export default Vue.extend({
   name: "Grid",
   props: {
     gap: {
@@ -20,22 +22,21 @@ export default {
       default: () => ({})
     }
   },
-  render: function(h) {
+  render: function(h): VNode {
     return h(
       this.as,
       {
-        class: this.$theme.css(
-          Object.assign({}, this.css, {
-            display: "grid",
-            gridGap: this.gap,
-            gridTemplateColumns: this.width
-              ? `repeat(auto-fill, minmax(${this.width}, 1fr))`
-              : `repeat(${this.columns}, 1fr)`
-          })
-        ),
+        class: this.$theme.css({
+          ...this.css,
+          display: "grid",
+          gridGap: this.gap,
+          gridTemplateColumns: this.width
+            ? `repeat(auto-fill, minmax(${this.width}, 1fr))`
+            : `repeat(${this.columns}, 1fr)`
+        }),
         attrs: this.$attrs
       },
       this.$slots.default
     );
   }
-};
+});

@@ -1,4 +1,6 @@
-export default {
+import Vue, { VNode } from "vue";
+
+export default Vue.extend({
   name: "Inline",
   props: {
     align: {
@@ -32,7 +34,7 @@ export default {
     }
   },
   computed: {
-    firstMargin() {
+    firstMargin(): string[] {
       return Array.from(this.gap).map(val => {
         const themeVal = this.$theme.get(`space.${val}`);
         if (typeof themeVal === "number") {
@@ -42,7 +44,7 @@ export default {
         }
       });
     },
-    secondMargin() {
+    secondMargin(): string[] {
       return Array.from(this.gap).map(val => {
         const themeVal = this.$theme.get(`space.${val}`);
         if (typeof themeVal === "number") {
@@ -53,30 +55,29 @@ export default {
       });
     }
   },
-  render: function(h) {
+  render: function(h): VNode {
     return h(
       this.as,
       {
-        class: this.$theme.css(
-          Object.assign({}, this.css, {
-            "> *": {
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: this.align,
-              justifyContent: "flex-start",
-              m: this.firstMargin
-            },
-            "> * > *": {
-              m: this.secondMargin
-            },
-            "> * > *:last-child": {
-              mr: "0px"
-            }
-          })
-        ),
+        class: this.$theme.css({
+          ...this.css,
+          "> *": {
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: this.align,
+            justifyContent: "flex-start",
+            m: this.firstMargin
+          },
+          "> * > *": {
+            m: this.secondMargin
+          },
+          "> * > *:last-child": {
+            mr: "0px"
+          }
+        }),
         attrs: this.$attrs
       },
       [h("div", this.$slots.default)]
     );
   }
-};
+});
