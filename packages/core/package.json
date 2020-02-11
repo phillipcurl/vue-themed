@@ -25,7 +25,8 @@
     "vue": "^2.6.11"
   },
   "peerDependencies": {
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "emotion": "^10.0.27"
   },
   "dependencies": {
     "@styled-system/core": "^5.1.2",
