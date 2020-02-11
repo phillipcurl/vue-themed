@@ -1,6 +1,6 @@
 {
   "name": "@vue-themed/core",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "> TODO: description",
   "author": "Phillip Curl",
   "homepage": "",
@@ -25,8 +25,8 @@
     "vue": "^2.6.11"
   },
   "peerDependencies": {
-    "vue": "^2.6.11",
-    "emotion": "^10.0.27"
+    "emotion": "^10.0.27",
+    "vue": "^2.6.11"
   },
   "dependencies": {
     "@styled-system/core": "^5.1.2",
