@@ -1,4 +1,4 @@
-# vue-ui
+# vue-themed
 
 ## Project setup
 ```

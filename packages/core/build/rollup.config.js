@@ -6,9 +6,9 @@ import resolve from "@rollup/plugin-node-resolve";
 
 export default {
   input: "src/index.ts", // Path relative to package.json
-  external: ["vue", "Vue", "OurVue"],
+  external: ["vue", "Vue", "OurVue", "emotion"],
   output: {
-    name: "VueThemedCore",
+    name: "VueThemed",
     exports: "named",
     globals: {
       vue: "Vue",

@@ -3,7 +3,7 @@
   "name": "@vue-themed/docs",
   "version": "0.0.23",
   "description": "> TODO: description",
-  "author": "Phillip Curl <phillipcurl@gmail.com>",
+  "author": "Phillip Curl",
   "homepage": "",
   "main": "lib/docs.js",
   "directories": {
