@@ -14,7 +14,7 @@
     "@nuxtjs/emotion": "0.0.1",
     "@vue-themed/components": "0.0.24",
     "@vue-themed/core": "0.0.24",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.15.8"
   },
   "devDependencies": {}
 }
